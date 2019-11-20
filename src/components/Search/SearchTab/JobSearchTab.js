@@ -3,7 +3,7 @@ import {Form, Row, Col, Button} from 'reactstrap';
 import styled from 'styled-components';
 
 import TextInput from '../../common/form/TextInput';
-import SelectIput from '../../common/form/SelectIput';
+import SelectInput from '../../common/form/SelectInput';
 
 const options = [
   {value: 'fullTime', label: 'Full Time'},
@@ -34,7 +34,7 @@ class JobSearchTab extends Component {
               />
             </Col>
             <Col md="3" xs="12" className="category">
-              <SelectIput
+              <SelectInput
                 options={options}
                 defaultValue={{value: '', label: 'Select Category'}}
               />
