@@ -1,16 +1,16 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import {Container, Row, Col, Button} from 'reactstrap';
 import styled from 'styled-components';
+import {useSelector} from 'react-redux';
 
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 import JobList from '../../Jobs/JobList/JobList';
 import FeaturedJob from '../../Jobs/FeaturedJob/FeaturedJob';
-import sampleJob from '../../../data/sampleJob';
 
 const DisplayJob = () => {
-  const jobs = sampleJob;
+  const jobs = useSelector (state => state.job.jobs);
 
   return (
     <Styles>

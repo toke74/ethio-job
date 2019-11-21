@@ -5,6 +5,8 @@ import NavigationBar from './components/Nav/NavigationBar/NavigationBar';
 import Home from './components/Home/Home';
 import JobDashoard from './components/Jobs/JobDashoard/JobDashoard';
 
+import Footer from './components/Footer/Footer';
+
 class App extends Component {
   render () {
     return (
@@ -17,6 +19,7 @@ class App extends Component {
             {/* <Route component={NoMatch} /> */}
           </Switch>
         </div>
+        <Footer />
       </Fragment>
     );
   }
