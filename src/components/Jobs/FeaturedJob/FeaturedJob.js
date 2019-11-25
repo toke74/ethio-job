@@ -12,13 +12,16 @@ class FeaturedJob extends Component {
     return (
       <Styles>
         <div>
-          <OwlCarousel className="owl-theme" items={1} loop margin={10} nav>
-            {this.props.jobs.map((job) => (
-              <div className="item" key={job.id}>
-                <FeaturedJobItem key={job.id} job={job} />
-              </div>
-            ))}
-          </OwlCarousel>
+          {this.props.jobs && (
+            <OwlCarousel className="owl-theme" items={1} loop margin={10} nav>
+              {this.props.jobs &&
+                this.props.jobs.map((job) => (
+                  <div className="item" key={job.id}>
+                    <FeaturedJobItem key={job.id} jobs={job} />
+                  </div>
+                ))}
+            </OwlCarousel>
+          )}
         </div>
       </Styles>
     );

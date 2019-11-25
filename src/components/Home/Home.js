@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
 
 import Hero from './Hero/Hero';
 import Services from './Services/Services';

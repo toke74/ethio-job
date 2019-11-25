@@ -1,49 +1,59 @@
-import React from 'react';
-import {Container, Row, Col, Button} from 'reactstrap';
+import React, { Component } from 'react';
+import { Container, Row, Col, Button } from 'reactstrap';
 import styled from 'styled-components';
-import {useSelector} from 'react-redux';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
-import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import JobList from '../../Jobs/JobList/JobList';
 import FeaturedJob from '../../Jobs/FeaturedJob/FeaturedJob';
+// import FeaturedJobItem from '../../Jobs/FeaturedJob/FeaturedJobItem/FeaturedJobItem';
 
-const DisplayJob = () => {
-  const jobs = useSelector (state => state.job.jobs);
+class DisplayJob extends Component {
+  render() {
+    const jobs = this.props.job;
 
-  return (
-    <Styles>
-      <div className="recent-featured-job border-0">
-        <Container fluid>
-          <Row>
-            <Col md="8">
-              <div className="recent-job-title">
-                <h3>Recent Jobs</h3>
-              </div>
-              <JobList jobs={jobs} />
+    return (
+      <Styles>
+        <div className="recent-featured-job border-0">
+          <Container fluid>
+            <Row>
+              <Col md="8">
+                <div className="recent-job-title">
+                  <h3>Recent Jobs</h3>
+                </div>
+                <JobList jobs={jobs} />
 
-              <div className="load-more">
-                <Button color="primary" className="py-2 px-3" type="submit">
-                  <FontAwesomeIcon icon={faPlusCircle} />
-                  Show More Jobs
-                </Button>
-              </div>
-            </Col>
-            <Col md="4">
-              <div className="featured-job-title">
-                <h3>Featured Job</h3>
-              </div>
-              <FeaturedJob jobs={jobs} />
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    </Styles>
-  );
-};
+                <div className="load-more">
+                  <Button color="primary" className="py-2 px-3" type="submit">
+                    <FontAwesomeIcon icon={faPlusCircle} />
+                    Show More Jobs
+                  </Button>
+                </div>
+              </Col>
+              <Col md="4">
+                <div className="featured-job-title">
+                  <h3>Featured Job</h3>
+                </div>
+                <FeaturedJob jobs={jobs} />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      </Styles>
+    );
+  }
+}
 
-export default DisplayJob;
+const mapStateToProps = (state) => ({
+  job: state.firestore.ordered.jobs,
+});
+
+export default connect(mapStateToProps)(
+  firestoreConnect([{ collection: 'jobs' }])(DisplayJob)
+);
 
 const Styles = styled.div`
   .recent-featured-job {

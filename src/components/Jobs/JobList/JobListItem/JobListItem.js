@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, Media, Row, Col, Button } from 'reactstrap';
+import {Container, Media, Row, Col, Button} from 'reactstrap';
 import {
   faMapMarkerAlt,
   faSuitcase,
   faMoneyBillAlt,
   faClock,
 } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import LogoImage from '../../../../assets/image/faceboo.png';
-import { jobTypeColors } from '../../../common/util/UtilFile';
+import {jobTypeColors} from '../../../common/util/UtilFile';
 
-const JobListItem = ({ job }) => {
-  const bcolors = jobTypeColors(job);
+const JobListItem = ({jobs}) => {
+  const bcolors = jobTypeColors (jobs);
+  // console.log (jobs);
   return (
     <Styles>
       <div className="single-job  rounded p-3">
@@ -22,7 +23,7 @@ const JobListItem = ({ job }) => {
               <Media
                 object
                 src={LogoImage}
-                style={{ width: '70px', paddingBottom: '10px' }}
+                style={{width: '70px', paddingBottom: '10px'}}
                 alt="logo image"
               />
             </Col>
@@ -30,30 +31,33 @@ const JobListItem = ({ job }) => {
               <Row>
                 <Col sm="12">
                   <p
-                    onClick={(e) => console.log('Clicked')}
+                    onClick={e => console.log ('Clicked')}
                     className="job-title"
                   >
-                    {job.title}
+                    {jobs.title}
                   </p>
                 </Col>
                 <Col sm="12">
                   <p className="job-content-1">
                     <FontAwesomeIcon icon={faSuitcase} />
-                    <span>{job.company}, </span>
+                    <span>{jobs.company}, </span>
                     <FontAwesomeIcon icon={faMapMarkerAlt} />
-                    <span> {job.location},</span>
+                    <span> {jobs.location},</span>
                     <FontAwesomeIcon icon={faMoneyBillAlt} />
-                    <span>${job.salaryEstimate}</span>
+                    <span>${jobs.salaryEstimate}</span>
                   </p>
                   <p className="job-content-2">
                     <span
                       className={` category text-${bcolors} border rounded border-${bcolors}`}
                     >
-                      {job.jobType}
+                      {jobs.jobType}
                     </span>
                     <span>
                       <FontAwesomeIcon icon={faClock} /> Deadline:{' '}
-                      <span className="text-danger">{job.deadLine}</span>{' '}
+                      <span className="text-danger">
+                        {jobs.deadLine.toDate ().toLocaleString ()}
+                      </span>
+                      {' '}
                     </span>
                   </p>
                 </Col>
